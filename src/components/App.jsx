@@ -1,4 +1,8 @@
 import { Component } from 'react';
+import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notofocation';
+import { GlobalStyle } from 'GlobalStyle';
+import { Section } from './Section/Section';
 
 const Button = ({ label, onUpdate }) => {
   return <button onClick={onUpdate}>{label}</button>;
@@ -48,23 +52,32 @@ export class App extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-
+    const total = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
       <div>
-        <h1>Please leave feedback</h1>
-        <Button label="Good" value={good} onUpdate={this.updateGood} />
-        <Button label="Neutral" value={neutral} onUpdate={this.updateNeutral} />
-        <Button label="Bad" value={bad} onUpdate={this.updateBad} />
-        <p>Statistics</p>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        {this.countTotalFeedback() > 0 && (
-          <p>Total: {this.countTotalFeedback()}</p>
-        )}
-        {good > 0 && (
-          <p>Positive Feedback: {this.countPositiveFeedbackPercentage()}%</p>
-        )}
+        <Section title="Please leave your feedback">
+          <Button label="Good" value={good} onUpdate={this.updateGood} />
+          <Button
+            label="Neutral"
+            value={neutral}
+            onUpdate={this.updateNeutral}
+          />
+          <Button label="Bad" value={bad} onUpdate={this.updateBad} />
+        </Section>
+        <Section title="Statistics">
+          {total > 0 && (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          )}
+          {total < 1 && <Notification message="There is no feedback" />}
+        </Section>
+        <GlobalStyle />
       </div>
     );
   }
