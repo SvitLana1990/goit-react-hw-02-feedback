@@ -4,6 +4,7 @@ import { Notification } from './Notification/Notification';
 import { GlobalStyle } from 'GlobalStyle';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Container } from './App.styled';
 
 // const Button = ({ label, onUpdate }) => {
 //   return <button onClick={() => onUpdate(label.toLowerCase())}>{label}</button>;
@@ -64,7 +65,7 @@ export class App extends Component {
     const options = ['good', 'neutral', 'bad'];
 
     return (
-      <div>
+      <Container>
         <Section title="Please leave your feedback">
           <FeedbackOptions
             options={options}
@@ -87,7 +88,7 @@ export class App extends Component {
           {total < 1 && <Notification message="There is no feedback" />}
         </Section>
         <GlobalStyle />
-      </div>
+      </Container>
     );
   }
 }
