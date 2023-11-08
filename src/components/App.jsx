@@ -6,10 +6,6 @@ import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Container } from './App.styled';
 
-// const Button = ({ label, onUpdate }) => {
-//   return <button onClick={() => onUpdate(label.toLowerCase())}>{label}</button>;
-// };
-
 export class App extends Component {
   state = {
     good: 0,
@@ -22,30 +18,6 @@ export class App extends Component {
       [type]: prevState[type] + 1,
     }));
   };
-
-  // updateGood = () => {
-  //   this.setState(prevState => {
-  //     return {
-  //       neutral: prevState.neutral + 1,
-  //     };
-  //   });
-  // };
-
-  // updateNeutral = () => {
-  //   this.setState(prevState => {
-  //     return {
-  //       neutral: prevState.neutral + 1,
-  //     };
-  //   });
-  // };
-
-  // updateBad = () => {
-  //   this.setState(prevState => {
-  //     return {
-  //       bad: prevState.bad + 1,
-  //     };
-  //   });
-  // };
 
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
@@ -71,9 +43,6 @@ export class App extends Component {
             options={options}
             onLeaveFeedback={this.onLeaveFeedback}
           />
-          {/* <Button label="Good" value={good} onUpdate={this.updateGood} />
-          <Button label="Neutral" value={neutral} onUpdate={this.updateNeutral} />
-          <Button label="Bad" value={bad} onUpdate={this.updateBad} /> */}
         </Section>
         <Section title="Statistics">
           {total > 0 && (
